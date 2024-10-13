@@ -37,7 +37,7 @@ class JSONResumeConverter:
                 "name": basics["name"],
                 "location": self.format_location(basics.get("location")),
                 "email": basics["email"],
-                "phone": basics["phone"],
+                "phone": basics.get("phone", None),
                 "website": basics.get("url", ""),
                 "social_networks": self.format_social_networks(
                     basics.get("profiles", [])
@@ -45,6 +45,11 @@ class JSONResumeConverter:
                 "sections": {},
             }
         }
+
+        # Remove phone number, if empty
+        if not self.render_cv["cv"]["phone"]:
+            del self.render_cv["cv"]["phone"]
+
 
         sections = {
             "summary": [basics.get("summary", "")],
