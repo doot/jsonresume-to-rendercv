@@ -105,7 +105,7 @@ class JSONResumeConverter:
     def format_experience(self, work):
         return [
             {
-                "company": job["name"],
+                "company": f"[{job['name']}]({job['website']})" if job.get("website") else job["name"],
                 "position": job["position"],
                 "location": job.get("location", ""),
                 "start_date": job["startDate"],
