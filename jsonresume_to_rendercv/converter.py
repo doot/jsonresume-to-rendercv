@@ -110,7 +110,7 @@ class JSONResumeConverter:
                 "location": job.get("location", ""),
                 "start_date": job["startDate"],
                 "end_date": job.get("endDate", "present"),
-                "highlights": job.get("highlights", []),
+                "highlights": [job.get("summary")] + job.get("highlights", []) if job.get("summary") else job.get("highlights", []),
             }
             for job in work
         ]
